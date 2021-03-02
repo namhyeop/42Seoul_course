@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/01 17:06:58 by namhkim           #+#    #+#             */
-/*   Updated: 2021/03/01 17:08:45 by namhkim          ###   ########.fr       */
+/*   Created: 2021/03/01 01:07:57 by namhkim           #+#    #+#             */
+/*   Updated: 2021/03/03 02:21:47 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+int	ft_strlcat(char *dst, char *src, int dstsize)
 {
-	if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	return (0);
+	int	len;
+
+	len = 0;
+	while (*dst != 0 && len < dstsize)
+	{
+		len++;
+		dst++;
+	}
+	while (*src != 0 && len + 1 < dstsize)
+	{
+		*dst++ = *src++;
+		len++;
+	}
+	if (len < dstsize)
+		*dst = 0;
+	while (*src++ != 0)
+		len++;
+	return (len);
 }

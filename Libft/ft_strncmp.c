@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/01 16:27:36 by namhkim           #+#    #+#             */
-/*   Updated: 2021/03/01 16:36:51 by namhkim          ###   ########.fr       */
+/*   Created: 2021/03/01 16:37:21 by namhkim           #+#    #+#             */
+/*   Updated: 2021/03/03 02:27:27 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(char *big char *little, int len)
+int	ft_strncmp(char *s1, char *s2, int n)
 {
-	int	i;
-	int	j;
+	unsigned char	*tmpS1;
+	unsigned char	*tmpS2;
+	int				i;
 
-	if (*little == '\0')
-		return ((char *)big);
+	tmpS1 = (unsigned char *)s1;
+	tmpS2 = (unsigned char *)s2;
 	i = 0;
-	while (big[i] && i < len)
+	while (i < n && tmpS1[i] && tmpS2[i])
 	{
-		j = 0;
-		while (big[i + j] == little[j] && (i + j < len))
-		{
-			j++;
-			if(!little[j])
-				return((char *)(big + i));
-		}
+		if (tmpS1[i] != tmpS2[i])
+			return (tmpS1[i] - tmpS2[i]);
 		i++;
 	}
-	return (NULL);
+	if (i == n)
+		return (0);
+	return (tmpS1[i] - tmpS2[i]);
 }

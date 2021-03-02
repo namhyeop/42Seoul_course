@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/01 00:20:08 by namhkim           #+#    #+#             */
-/*   Updated: 2021/03/01 00:51:20 by namhkim          ###   ########.fr       */
+/*   Created: 2021/03/01 00:08:38 by namhkim           #+#    #+#             */
+/*   Updated: 2021/03/03 02:14:24 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, void *src, int len)
+void	ft_bzero(void *dst, int n)
 {
-	int		i;
-	unsigned char	*dst2;
-	unsigned char	*src2;
+	int				i;
+	unsigned char	*addr;
 
-	if(dst == src || len == 0)
-		return (dst);
-	dst2 = (unsigned char *)dst;
-	src2 = (unsigned char *)src;
+	addr = (unsigned char *)dst;
 	i = 0;
-	if(dst < src)
-		while(i < len)
-		{
-			dst2[i] = src2[i];
-			i++;
-		}
-	else
-		while(i < len)
-		{
-			dst2[len -i -1] = src2[len -i -1];
-			i++;
-		}
-	return (dst);
+	while (i < n)
+	{
+		addr[i++] = 0;
+	}
 }

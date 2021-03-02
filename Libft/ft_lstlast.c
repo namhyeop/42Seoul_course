@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/01 21:31:08 by namhkim           #+#    #+#             */
-/*   Updated: 2021/03/01 21:31:08 by namhkim          ###   ########.fr       */
+/*   Created: 2021/03/02 19:09:16 by namhkim           #+#    #+#             */
+/*   Updated: 2021/03/02 19:09:16 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (c >= 'A' && c <= 'Z')
-		c += 'a' - 'A';
-	return (c);
+	if (lst == 0)
+		return (0);
+	while (lst -> next)
+		lst = lst->next;
+	return (lst);
 }

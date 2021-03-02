@@ -6,45 +6,45 @@
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:41:34 by namhkim           #+#    #+#             */
-/*   Updated: 2021/03/01 17:05:23 by namhkim          ###   ########.fr       */
+/*   Updated: 2021/03/03 02:10:44 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 
-static int	pass_whitespace(char *str)
+static size_t	pass_whitespace(const char *str)
 {
-	int	i;
-	
+	size_t	i;
+
 	i = 0;
-	while(str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 		i++;
 	return (i);
 }
 
-int	ft_atoi(char *str)
+int				ft_atoi(char *str)
 {
-	int		i;
-	unsigned long 	result;
-	int		sign;
+	size_t			i;
+	unsigned long	result;
+	int				sign;
 
 	i = pass_whitespace(str);
 	sign = 1;
-	if(str[i] && (str[i] == '+' || str[i] == '-'))
+	if (str[i] && (str[i] == '+' || str[i] == '-'))
 	{
-		if(str[i] == '-')
+		if (str[i] == '-')
 			sign = -1;
 		i++;
 	}
-	if(str[i] < '0' || str[i] > '9')
-		return 0;
+	if (str[i] < '0' || str[i] > '9')
+		return (0);
 	result = str[i++] - '0';
-	while(str[i] && str[i] >= '0' && str[i] <= '9')
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 		result = result * 10 + str[i++] - '0';
 	if (result >= (unsigned long)LONG_MAX && sign == 1)
 		return (-1);
-	if (result >= (unsigned long)LONG_MIN && sing == -1)
+	if (result >= (unsigned long)LONG_MIN && sign == -1)
 		return (0);
 	result = (int)result;
 	return (result * sign);
