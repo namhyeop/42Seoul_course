@@ -6,7 +6,7 @@
 /*   By: jakwak <jakwak@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 05:55:23 by jakwak            #+#    #+#             */
-/*   Updated: 2021/03/03 05:32:31 by namhkim          ###   ########.fr       */
+/*   Updated: 2020/12/13 05:55:26 by jakwak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst,
 				void *(*f)(void *), void (*del)(void *));
+
 #endif
