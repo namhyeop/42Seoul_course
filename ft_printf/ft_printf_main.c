@@ -74,6 +74,8 @@ int							parsing_sentance(char *str, va_list cur_list)
 				str_info->zero = 0;
 			if (str_info->type == 'p' || str_info->type == 'x' || str_info->type == 'X')
 				str_info->base = 16;
+			if (str_info->type == 0)
+				return (ret);
 			ret += print_type(cur_list, str_info);
 		}
 		else

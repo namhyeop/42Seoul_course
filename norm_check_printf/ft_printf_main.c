@@ -75,8 +75,12 @@ int					parsing2(char *str, va_list cur_list, t_info *str_info)
 			if (str_info->type == 'p' || str_info->type == 'x' ||
 					str_info->type == 'X')
 				str_info->base = 16;
+			if (str_info->type == 0)
+				return (ret);
 			ret += print_type(cur_list, str_info);
 		}
+		else
+			ret += ft_putchar(*str++);
 	}
 	return (ret);
 }
