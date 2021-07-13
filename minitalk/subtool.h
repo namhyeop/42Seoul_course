@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 17:53:20 by namhkim           #+#    #+#             */
-/*   Updated: 2021/06/30 14:45:15 by namhkim          ###   ########.fr       */
+/*   Created: 2021/07/07 15:43:41 by namhkim           #+#    #+#             */
+/*   Updated: 2021/07/07 15:43:44 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include <signal.h>
 # include <unistd.h>
+# include <limits.h>
 
-void		ft_putnbr_fd(int n, int fd);
-void		write_nbr(int n, int fd);
+void			writenbr(int n, int fd);
+void			ft_putnbr_fd(int n, int fd);
+int				ft_atoi(const char *str);
+size_t			ft_strlen(const char *s);
 #endif

@@ -5,48 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 17:49:21 by namhkim           #+#    #+#             */
-/*   Updated: 2021/06/29 18:46:33 by namhkim          ###   ########.fr       */
+/*   Created: 2021/07/07 15:44:24 by namhkim           #+#    #+#             */
+/*   Updated: 2021/07/07 15:44:25 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
+#include <stdio.h>
 
-void prettysend(int pid, char word, char num)
+void	bit_send(int pid, char word, char num)
 {
-	if(word & num)
+	if (word & num)
 		kill(pid, SIGUSR1);
 	else
 		kill(pid, SIGUSR2);
-	usleep(100);
+	usleep(1000);
 }
 
-void	send(int pid, char word)
+void	send_unit(int pid, char word)
 {
-	size_t i;
-	int pos;
+	size_t	i;
 
-	i = 8;
-	pos = 128;
-	while (i--)
+	i = 128;
+	while (i > 0)
 	{
-		prettysend(pid, word, pos);
-		pos /= 2;
+		bit_send(pid, word, (int)i);
+		i /= 2;
 	}
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		i;
 	pid_t	pid;
 
-	if(argc == 3)
+	if (argc == 3)
 	{
-		pid = ft_atai(argv[1]);
 		i = 0;
+		pid = ft_atoi(argv[1]);
 		while (argv[2][i])
 		{
-			send(pid, argv[2][i]);
+			send_unit(pid, argv[2][i]);
 			i++;
 		}
 	}

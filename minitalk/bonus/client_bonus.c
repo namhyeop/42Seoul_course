@@ -5,52 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 15:48:41 by namhkim           #+#    #+#             */
-/*   Updated: 2021/06/30 16:00:19 by namhkim          ###   ########.fr       */
+/*   Created: 2021/07/07 15:46:07 by namhkim           #+#    #+#             */
+/*   Updated: 2021/07/07 15:46:09 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client_bonus.h"
+#include <stdio.h>
 
-int		*getinstance(void)
+void	bit_send(int pid, char word, char num)
 {
-	static int finished;
-
-	finished = 1;
-	return (&finished);
+	if (word & num)
+		kill(pid, SIGUSR1);
+	else
+		kill(pid, SIGUSR2);
+	usleep(100);
 }
 
-void	fnsig1(void)
+void	send_unit(int pid, char word)
 {
-	write(1, "Error of send\n", 21);
-	*(getinstance()) = 0;
+	size_t	i;
+
+	i = 128;
+	while (i > 0)
+	{
+		bit_send(pid, word, (int)i);
+		i /= 2;
+	}
 }
 
-int		main(int argc, char **argv[])
+int	main(int argc, char **argv)
 {
-	union u_data	mypid;
-	union u_data	len;
-	pid_t			pid;
-	int				i;
+	int		i;
+	pid_t	pid;
 
-	signal(SIGUSR1, (void *)fnsig1);
 	if (argc == 3)
 	{
-		mypid.pid = getpid();
+		i = 0;
 		pid = ft_atoi(argv[1]);
-		len.pid = ft_strlen(argv[2]);
-		i = 0;
-		while (i < 4)
-			send(pid, mypid.arr[i++]);
-		usleep(200);
-		i = 0;
-		while (i < 4)
-			send(pid, len.arr[i++]);
-		i = 0;
 		while (argv[2][i])
-			send(pid, argv[2][i++]);
-		while (*getinstance())
-			usleep(1);
+		{
+			send_unit(pid, argv[2][i]);
+			i++;
+		}
 	}
 	return (0);
 }

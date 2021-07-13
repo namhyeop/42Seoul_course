@@ -1,26 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_bonus_sub.c                                 :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 16:52:05 by namhkim           #+#    #+#             */
-/*   Updated: 2021/06/30 16:53:07 by namhkim          ###   ########.fr       */
+/*   Created: 2021/07/07 15:46:16 by namhkim           #+#    #+#             */
+/*   Updated: 2021/07/07 15:46:17 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server_bonus.h"
+#include <stdio.h>
 
-void	clean(void)
+void	fnsig(int sig)
 {
-	t_node *ptr;
+	static char	word = 0;
+	static int	cnt = 0;
 
-	ptr = getinstnace();
-	ptr->cnt = 0;
-	ptr->pid.num = 0;
-	ptr->len.num = 0;
-	ptr->step = 0;
-	if (ptr->str)
-		free(ptr->str);
+	word <<= 1;
+	if (sig == 30)
+		word += 1;
+	cnt++;
+	if (cnt == 8)
+	{
+		write(1, &word, 1);
+		word = 0;
+		cnt = 0;
+	}
+	usleep(1);
+}
+
+int	main(void)
+{
+	signal(SIGUSR1, (void *)fnsig);
+	signal(SIGUSR2, (void *)fnsig);
+	ft_putnbr_fd(getpid(), 1);
+	write(1, "\n", 1);
+	while (1)
+	{
+		pause();
+	}
+	return (0);
 }

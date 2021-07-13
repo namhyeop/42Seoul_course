@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   subtool_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 15:44:16 by namhkim           #+#    #+#             */
-/*   Updated: 2021/07/07 15:44:18 by namhkim          ###   ########.fr       */
+/*   Created: 2021/07/07 15:46:38 by namhkim           #+#    #+#             */
+/*   Updated: 2021/07/07 15:46:40 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#ifndef SUBTOOL_BONUS_H
+# define SUBTOOL_BONUS_H
 
-# include "subtool.h"
+# include <signal.h>
+# include <unistd.h>
+# include <limits.h>
 
+void			writenbr(int n, int fd);
+void			ft_putnbr_fd(int n, int fd);
+int				ft_atoi(const char *str);
+size_t			ft_strlen(const char *s);
 #endif

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   subtool.c                                          :+:      :+:    :+:   */
+/*   subtool_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/07 15:46:57 by namhkim           #+#    #+#             */
-/*   Updated: 2021/07/07 15:46:58 by namhkim          ###   ########.fr       */
+/*   Created: 2021/07/07 15:46:32 by namhkim           #+#    #+#             */
+/*   Updated: 2021/07/07 15:46:33 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "subtool.h"
+#include "subtool_bonus.h"
 
 void	writenbr(int n, int fd)
 {
-	size_t	i;
-	char	nbr[11];
+	size_t			i;
+	char			nbr[11];
 
 	i = 11;
 	while (i-- >= 0)
@@ -80,7 +80,7 @@ int	ft_atoi(const char *str)
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	len;
+	size_t			len;
 
 	len = 0;
 	while (s[len])
